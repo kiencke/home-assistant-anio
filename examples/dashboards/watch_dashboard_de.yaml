@@ -1,0 +1,142 @@
+# Replace <device_slug> and <ha_device_id>, and check every entity ID against
+# your entity registry: Home Assistant may generate or retain different IDs.
+views:
+  - title: Anio
+    path: anio
+    icon: mdi:watch
+    type: sections
+    max_columns: 3
+    badges:
+      - type: entity
+        entity: sensor.<device_slug>_network_quality
+        show_name: false
+        show_state: true
+        show_icon: true
+      - type: entity
+        entity: sensor.<device_slug>_position_source
+        show_name: false
+        show_state: true
+        show_icon: true
+      - type: entity
+        entity: sensor.<device_slug>_gps_accuracy
+        show_name: false
+        show_state: true
+        show_icon: true
+      - type: entity
+        entity: sensor.<device_slug>_battery
+        show_name: false
+        show_state: true
+        show_icon: true
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Standort
+          - type: map
+            entities:
+              - entity: device_tracker.<device_slug>_location
+                color: indigo
+                label_mode: icon
+            theme_mode: auto
+            grid_options:
+              columns: full
+          - type: button
+            entity: button.<device_slug>_request_location
+            name:
+              type: entity
+            show_name: true
+            show_icon: true
+            tap_action:
+              action: perform-action
+              perform_action: button.press
+              target:
+                entity_id: button.<device_slug>_request_location
+            grid_options:
+              columns: 6
+              rows: 2
+          - type: tile
+            entity: device_tracker.<device_slug>_location
+            vertical: false
+            grid_options:
+              columns: 6
+              rows: 1
+          - type: tile
+            entity: sensor.<device_slug>_location_request_status
+            name:
+              type: entity
+            vertical: false
+            grid_options:
+              columns: 6
+              rows: 1
+          - type: tile
+            entity: sensor.<device_slug>_last_response
+            name:
+              type: entity
+            vertical: false
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: switch.<device_slug>_explorer
+            name:
+              type: entity
+            vertical: false
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.<device_slug>_position_update
+            name:
+              type: entity
+            vertical: false
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: switch.<device_slug>_radar_mode
+            name:
+              type: entity
+            vertical: false
+            grid_options:
+              columns: 6
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Chat
+          - type: custom:anio-chat-card
+            device_id: "<ha_device_id>"
+            grid_options:
+              columns: full
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Weitere Funktionen
+          - type: tile
+            entity: button.<device_slug>_ring_watch
+            name:
+              type: entity
+            hide_state: true
+            vertical: true
+            tap_action:
+              action: perform-action
+              perform_action: button.press
+              target:
+                entity_id: button.<device_slug>_ring_watch
+            icon_tap_action:
+              action: perform-action
+              perform_action: button.press
+              target:
+                entity_id: button.<device_slug>_ring_watch
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: switch.<device_slug>_bell_protection
+            name:
+              type: entity
+            icon: mdi:shield-lock
+            vertical: true
+            features:
+              - type: toggle
+            features_position: bottom
+            grid_options:
+              columns: 6

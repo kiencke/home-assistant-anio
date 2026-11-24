@@ -1,0 +1,11 @@
+{
+  "domain": "anio",
+  "name": "Anio (Unofficial)",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/kiencke/home-assistant-anio",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "0.1.0"
+}

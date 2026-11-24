@@ -1,0 +1,239 @@
+{
+  "title": "Anio (Inoffiziell)",
+  "services": {
+    "send_emoji": {
+      "name": "Emoji senden",
+      "description": "Ein Anio-Emoji anhand seines API-Codes senden.",
+      "fields": {
+        "emoji_code": {
+          "name": "Emoji",
+          "description": "Wähle einen der bekannten Anio-Emoji-Codes aus."
+        }
+      }
+    },
+    "refresh_chat": {
+      "name": "Chat aktualisieren",
+      "description": "Neue Anio-Chatnachrichten für eine Uhr abrufen."
+    },
+    "refresh_activities": {
+      "name": "Aktivitäten aktualisieren",
+      "description": "Aktivitäten für das Anio-Konto der ausgewählten Uhr abrufen.",
+      "fields": {
+        "force": {
+          "name": "Aktualisierung erzwingen",
+          "description": "Kurze Wartezeit für das automatische Öffnen der Karte umgehen."
+        }
+      }
+    }
+  },
+  "config": {
+    "step": {
+      "user": {
+        "title": "Mit Anio verbinden",
+        "description": "Melde dich mit deinem Anio-Konto an.",
+        "data": {
+          "email": "E-Mail-Adresse",
+          "password": "Passwort",
+          "app_uuid": "App-UUID (optional)"
+        },
+        "data_description": {
+          "app_uuid": "Eine 16-stellige hexadezimale Kennung. Leer lassen, um automatisch eine neue zu erzeugen, oder den vorgeschlagenen Wert beibehalten."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Anio-Anmeldung erneuern",
+        "description": "Das Anio-Refresh-Token für {email} ist abgelaufen. Gib dein Passwort erneut ein.",
+        "data": {
+          "password": "Passwort"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Anmeldung fehlgeschlagen. Prüfe E-Mail-Adresse und Passwort.",
+      "cannot_connect": "Verbindung zur Anio-Cloud fehlgeschlagen.",
+      "unknown": "Unerwartete Antwort von der Anio-Cloud.",
+      "invalid_app_uuid": "Die App-UUID muss genau 16 hexadezimale Zeichen enthalten."
+    },
+    "abort": {
+      "already_configured": "Dieses Anio-Konto ist bereits eingerichtet.",
+      "reauth_successful": "Anio-Anmeldung erfolgreich erneuert.",
+      "reauth_entry_not_found": "Der zu erneuernde Anio-Eintrag wurde nicht gefunden."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Abrufintervalle",
+        "description": "Lege die Home-Assistant-Abrufintervalle fest. Die Tracking-Intervalle ändern nicht das Ortungsintervall der Uhr.",
+        "data": {
+          "normal_interval": "Normalmodus (Sekunden)",
+          "schoolway_interval": "Schoolway-Modus (Sekunden)",
+          "explorer_interval": "Explorer-Modus (Sekunden)",
+          "activity_interval": "Aktivitäten (Minuten)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "location_request": {
+        "name": "Standort anfordern"
+      },
+      "find_my_device": {
+        "name": "Uhr klingeln lassen"
+      }
+    },
+    "device_tracker": {
+      "location": {
+        "name": "Standort"
+      }
+    },
+    "notify": {
+      "chat": {
+        "name": "Nachricht senden"
+      }
+    },
+    "text": {
+      "send_message": {
+        "name": "Nachricht senden"
+      }
+    },
+    "sensor": {
+      "battery": {
+        "name": "Akku"
+      },
+      "tracking_mode": {
+        "name": "Tracking-Modus",
+        "state": {
+          "normal": "Normal",
+          "schoolway": "Schulweg",
+          "explorer": "Explorer"
+        }
+      },
+      "last_message": {
+        "name": "Letzte Chatnachricht"
+      },
+      "last_activity": {
+        "name": "Letzte Aktivität"
+      },
+      "location_request_status": {
+        "name": "Status Standortanforderung",
+        "state": {
+          "idle": "Inaktiv",
+          "requesting": "Wird angefordert",
+          "updated": "Aktualisiert",
+          "timeout": "Zeitüberschreitung",
+          "error": "Fehler"
+        }
+      },
+      "last_location": {
+        "name": "Positions-Update"
+      },
+      "last_response": {
+        "name": "Letzte Antwort"
+      },
+      "position_source": {
+        "name": "Ortungsquelle"
+      },
+      "signal_strength": {
+        "name": "Netzqualität"
+      },
+      "gps_accuracy": {
+        "name": "GPS-Genauigkeit"
+      },
+      "speed": {
+        "name": "Geschwindigkeit (Rohwert)"
+      },
+      "direction": {
+        "name": "Richtung (Rohwert)"
+      },
+      "radar_remaining": {
+        "name": "Radar-Modus Restzeit"
+      }
+    },
+    "binary_sensor": {
+      "locating_enabled": {
+        "name": "Standortübermittlung aktiviert"
+      }
+    },
+    "switch": {
+      "explorer": {
+        "name": "Explorer"
+      },
+      "radar_mode": {
+        "name": "Radar-Modus"
+      },
+      "bell_protection": {
+        "name": "Klingel-Schutz",
+        "state": {
+          "on": "Aktiv (Klingeln blockiert)",
+          "off": "Inaktiv (Klingeln erlaubt)"
+        }
+      }
+    },
+    "number": {
+      "radar_duration": {
+        "name": "Radar-Modus Dauer"
+      },
+      "radar_interval": {
+        "name": "Radar-Modus Intervall"
+      }
+    }
+  },
+  "exceptions": {
+    "activity_refresh_failed": {
+      "message": "Anio-Aktivitäten konnten nicht aktualisiert werden."
+    },
+    "activity_unavailable": {
+      "message": "Aktivitäten sind für die ausgewählte Anio-Uhr nicht verfügbar."
+    },
+    "chat_refresh_failed": {
+      "message": "Anio-Chatnachrichten konnten nicht geladen werden."
+    },
+    "bell_protection_active": {
+      "message": "Der Klingel-Schutz ist aktiv. Deaktiviere ihn bewusst, bevor du die Uhr klingeln lässt."
+    },
+    "radar_duration_out_of_range": {
+      "message": "Die Radar-Modus-Dauer muss zwischen {minimum} und {maximum} Minuten liegen."
+    },
+    "radar_interval_out_of_range": {
+      "message": "Das Radar-Modus-Intervall muss zwischen {minimum} und {maximum} Sekunden liegen."
+    },
+    "radar_battery_requirement": {
+      "message": "Der Radar-Modus benötigt einen bekannten Akkustand von mindestens {minimum} %."
+    },
+    "radar_value_out_of_range": {
+      "message": "Radar-Modus-Werte müssen ganze Zahlen zwischen {minimum} und {maximum} sein."
+    },
+    "message_empty": {
+      "message": "Die Nachricht darf nicht leer sein."
+    },
+    "message_too_long": {
+      "message": "Die Nachricht überschreitet die maximale Länge von {max_length} Zeichen."
+    },
+    "message_send_failed": {
+      "message": "Die Nachricht konnte nicht an die Anio-Uhr gesendet werden."
+    },
+    "one_watch_required": {
+      "message": "Bitte genau eine Anio-Uhr auswählen."
+    },
+    "ha_device_not_found": {
+      "message": "Das ausgewählte Home-Assistant-Gerät wurde nicht gefunden."
+    },
+    "not_anio_watch": {
+      "message": "Das ausgewählte Gerät ist keine Anio-Uhr."
+    },
+    "emoji_chat_unavailable": {
+      "message": "Die ausgewählte Anio-Uhr unterstützt keinen aktivierten Emoji-Chat."
+    },
+    "invalid_emoji_code": {
+      "message": "Bitte einen unterstützten Anio-Emoji-Code auswählen."
+    },
+    "emoji_send_failed": {
+      "message": "Das Emoji konnte nicht an die Anio-Uhr gesendet werden."
+    },
+    "chat_unavailable": {
+      "message": "Der Chat ist für die ausgewählte Anio-Uhr nicht verfügbar."
+    }
+  }
+}

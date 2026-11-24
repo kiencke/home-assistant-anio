@@ -1,0 +1,239 @@
+{
+  "title": "Anio (Unofficial)",
+  "services": {
+    "send_emoji": {
+      "name": "Send emoji",
+      "description": "Send an Anio emoji using its API code.",
+      "fields": {
+        "emoji_code": {
+          "name": "Emoji",
+          "description": "Select one of the known Anio emoji codes."
+        }
+      }
+    },
+    "refresh_chat": {
+      "name": "Refresh chat",
+      "description": "Fetch new Anio chat messages for one watch."
+    },
+    "refresh_activities": {
+      "name": "Refresh activities",
+      "description": "Fetch activities for the selected watch's Anio account.",
+      "fields": {
+        "force": {
+          "name": "Force refresh",
+          "description": "Bypass the short cooldown for automatic card openings."
+        }
+      }
+    }
+  },
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Anio",
+        "description": "Sign in with your Anio account.",
+        "data": {
+          "email": "Email address",
+          "password": "Password",
+          "app_uuid": "App UUID (optional)"
+        },
+        "data_description": {
+          "app_uuid": "A 16-character hexadecimal identifier. Leave blank to generate one automatically, or keep the suggested value."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Renew Anio login",
+        "description": "The Anio refresh token for {email} has expired. Enter your password again.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Sign-in failed. Check your email address and password.",
+      "cannot_connect": "Could not connect to the Anio cloud.",
+      "unknown": "Unexpected response from the Anio cloud.",
+      "invalid_app_uuid": "The app UUID must contain exactly 16 hexadecimal characters."
+    },
+    "abort": {
+      "already_configured": "This Anio account is already configured.",
+      "reauth_successful": "Anio sign-in was renewed successfully.",
+      "reauth_entry_not_found": "The Anio entry to reauthenticate could not be found."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Polling intervals",
+        "description": "Set Home Assistant polling intervals. Tracking intervals do not change the watch's own locating interval.",
+        "data": {
+          "normal_interval": "Normal mode (seconds)",
+          "schoolway_interval": "Schoolway mode (seconds)",
+          "explorer_interval": "Explorer mode (seconds)",
+          "activity_interval": "Activities (minutes)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "location_request": {
+        "name": "Request location"
+      },
+      "find_my_device": {
+        "name": "Ring watch"
+      }
+    },
+    "device_tracker": {
+      "location": {
+        "name": "Location"
+      }
+    },
+    "notify": {
+      "chat": {
+        "name": "Send message"
+      }
+    },
+    "text": {
+      "send_message": {
+        "name": "Send message"
+      }
+    },
+    "sensor": {
+      "battery": {
+        "name": "Battery"
+      },
+      "tracking_mode": {
+        "name": "Tracking mode",
+        "state": {
+          "normal": "Normal",
+          "schoolway": "Schoolway",
+          "explorer": "Explorer"
+        }
+      },
+      "last_message": {
+        "name": "Last chat message"
+      },
+      "last_activity": {
+        "name": "Last activity"
+      },
+      "location_request_status": {
+        "name": "Location request status",
+        "state": {
+          "idle": "Idle",
+          "requesting": "Requesting",
+          "updated": "Updated",
+          "timeout": "Timed out",
+          "error": "Error"
+        }
+      },
+      "last_location": {
+        "name": "Position update"
+      },
+      "last_response": {
+        "name": "Last response"
+      },
+      "position_source": {
+        "name": "Position source"
+      },
+      "signal_strength": {
+        "name": "Network quality"
+      },
+      "gps_accuracy": {
+        "name": "GPS accuracy"
+      },
+      "speed": {
+        "name": "Speed (raw)"
+      },
+      "direction": {
+        "name": "Direction (raw)"
+      },
+      "radar_remaining": {
+        "name": "Radar mode remaining time"
+      }
+    },
+    "binary_sensor": {
+      "locating_enabled": {
+        "name": "Location reporting enabled"
+      }
+    },
+    "switch": {
+      "explorer": {
+        "name": "Explorer"
+      },
+      "radar_mode": {
+        "name": "Radar mode"
+      },
+      "bell_protection": {
+        "name": "Bell protection",
+        "state": {
+          "on": "Protected",
+          "off": "Ringing allowed"
+        }
+      }
+    },
+    "number": {
+      "radar_duration": {
+        "name": "Radar mode duration"
+      },
+      "radar_interval": {
+        "name": "Radar mode interval"
+      }
+    }
+  },
+  "exceptions": {
+    "activity_refresh_failed": {
+      "message": "Could not refresh Anio activities."
+    },
+    "activity_unavailable": {
+      "message": "Activities are not available for the selected Anio watch."
+    },
+    "chat_refresh_failed": {
+      "message": "Could not load Anio chat messages."
+    },
+    "bell_protection_active": {
+      "message": "Bell protection is enabled. Disable it explicitly before ringing the watch."
+    },
+    "radar_duration_out_of_range": {
+      "message": "Radar mode duration must be between {minimum} and {maximum} minutes."
+    },
+    "radar_interval_out_of_range": {
+      "message": "Radar mode interval must be between {minimum} and {maximum} seconds."
+    },
+    "radar_battery_requirement": {
+      "message": "Radar mode requires a known battery level of at least {minimum}%."
+    },
+    "radar_value_out_of_range": {
+      "message": "Radar mode values must be whole numbers between {minimum} and {maximum}."
+    },
+    "message_empty": {
+      "message": "The message must not be empty."
+    },
+    "message_too_long": {
+      "message": "The message exceeds the maximum length of {max_length} characters."
+    },
+    "message_send_failed": {
+      "message": "Could not send the message to the Anio watch."
+    },
+    "one_watch_required": {
+      "message": "Select exactly one Anio watch."
+    },
+    "ha_device_not_found": {
+      "message": "The selected Home Assistant device was not found."
+    },
+    "not_anio_watch": {
+      "message": "The selected device is not an Anio watch."
+    },
+    "emoji_chat_unavailable": {
+      "message": "The selected Anio watch does not support enabled emoji chat."
+    },
+    "invalid_emoji_code": {
+      "message": "Select a supported Anio emoji code."
+    },
+    "emoji_send_failed": {
+      "message": "Could not send the emoji to the Anio watch."
+    },
+    "chat_unavailable": {
+      "message": "Chat is not available for the selected Anio watch."
+    }
+  }
+}

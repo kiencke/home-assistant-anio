@@ -1,0 +1,57 @@
+send_emoji:
+  name: Send emoji
+  description: Send an Anio emoji using its API code (for example, E02).
+  target:
+    device:
+      integration: anio
+      multiple: false
+  fields:
+    emoji_code:
+      name: Emoji
+      description: Select one of the known Anio emoji codes.
+      required: true
+      selector:
+        select:
+          mode: dropdown
+          options:
+            - label: "🙂 E01"
+              value: E01
+            - label: "😘 E02"
+              value: E02
+            - label: "😎 E03"
+              value: E03
+            - label: "🙁 E04"
+              value: E04
+            - label: "😁 E05"
+              value: E05
+            - label: "😛 E06"
+              value: E06
+            - label: "👎 E07"
+              value: E07
+            - label: "👍 E08"
+              value: E08
+            - label: "❤️ E09"
+              value: E09
+
+refresh_chat:
+  name: Refresh chat
+  description: Fetch new Anio chat messages for one watch.
+  target:
+    device:
+      integration: anio
+      multiple: false
+
+refresh_activities:
+  name: Refresh activities
+  description: Fetch activities for the selected watch's Anio account.
+  target:
+    device:
+      integration: anio
+      multiple: false
+  fields:
+    force:
+      name: Force refresh
+      description: Bypass the short cooldown for automatic card openings.
+      default: true
+      selector:
+        boolean:

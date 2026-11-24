@@ -1,0 +1,23 @@
+# Replace <device_slug> and check the entity IDs against your entity registry.
+# Native Home Assistant chat fallback. It supports text and message history,
+# but not inline audio playback or recording.
+type: vertical-stack
+cards:
+  - type: entities
+    title: Anio chat
+    show_header_toggle: false
+    entities:
+      - entity: text.<device_slug>_send_message
+      - entity: sensor.<device_slug>_last_chat_message
+  - type: markdown
+    content: >-
+      {% set messages = state_attr('sensor.<device_slug>_last_chat_message',
+      'messages') or [] %}
+      {% if messages %}
+        {% for message in messages %}
+      **{{ 'Watch' if message.is_from_watch else 'Home Assistant' }}**:
+      {{ message.message or message.message_type }}
+        {% endfor %}
+      {% else %}
+      No chat messages yet.
+      {% endif %}
